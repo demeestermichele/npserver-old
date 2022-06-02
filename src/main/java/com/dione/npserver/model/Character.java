@@ -1,4 +1,4 @@
-package com.dione.npserver;
+package com.dione.npserver.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,13 +6,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Customer {
+public class Character {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String firstName;
     private String lastName;
+    private Sex sex;
 
     public Integer getId() {
         return id;
@@ -36,5 +37,13 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 }
