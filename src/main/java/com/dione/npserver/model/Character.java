@@ -13,12 +13,12 @@ public class Character {
     private Sex sex;
     private Role role;
 
-    @ManyToOne
-    @JoinColumn(name = "mother")
+    @OneToOne
+    @JoinColumn(name = "mother", nullable = true)
     private Character mother;
 
-    @ManyToOne
-    @JoinColumn(name = "father")
+    @OneToOne
+    @JoinColumn(name = "father", nullable = true)
     private  Character father;
 
     public Integer getId() {
