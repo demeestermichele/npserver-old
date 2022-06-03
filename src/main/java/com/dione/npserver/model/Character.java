@@ -1,9 +1,6 @@
 package com.dione.npserver.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Character {
@@ -14,6 +11,15 @@ public class Character {
     private String firstName;
     private String lastName;
     private Sex sex;
+    private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "mother")
+    private Character mother;
+
+    @ManyToOne
+    @JoinColumn(name = "father")
+    private  Character father;
 
     public Integer getId() {
         return id;
@@ -45,5 +51,29 @@ public class Character {
 
     public void setSex(Sex sex) {
         this.sex = sex;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Character getMother() {
+        return mother;
+    }
+
+    public void setMother(Character mother) {
+        this.mother = mother;
+    }
+
+    public Character getFather() {
+        return father;
+    }
+
+    public void setFather(Character father) {
+        this.father = father;
     }
 }

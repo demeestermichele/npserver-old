@@ -1,19 +1,18 @@
 package com.dione.npserver.dto;
 
-import com.dione.npserver.model.Character;
+import com.dione.npserver.model.Role;
+import com.dione.npserver.model.Sex;
 import lombok.Data;
 
-@Data
-public class CharacterDto {
-    private Integer id;
-    private String firstName;
-    private String lastName;
+import java.io.Serializable;
 
-    public CharacterDto(Character entity){
-        this.id = entity.getId();
-        this.firstName = entity.getFirstName();
-        this.lastName = entity.getLastName();
-    }
+@Data
+public class CharacterDto implements Serializable {
+    private final Integer id;
+    private final String firstName;
+    private final String lastName;
+    private final Sex sex;
+    private final Role chartype;
+    private final com.dione.npserver.dto.CharacterDto mother;
+    private final com.dione.npserver.dto.CharacterDto father;
 }
-    /*Student student = repository.findAllById("123L");
-    StudentDto studentDto = new StudentDto(student);*/
