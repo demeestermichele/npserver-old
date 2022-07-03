@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/characters")
 @CrossOrigin(origins = "*")
 public class CharacterController {
 
@@ -26,12 +27,12 @@ public class CharacterController {
         return "Added new character to repo!";
     }
 
-    @GetMapping("/character-list")
+    @GetMapping("/list")
     public Iterable<Character> getCharacter() {
         return characterRepository.findAll();
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public Character findCharacterById(@PathVariable Integer id) {
         return characterRepository.findCharacterById(id);
     }
