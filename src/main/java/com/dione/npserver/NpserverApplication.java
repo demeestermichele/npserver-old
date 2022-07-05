@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class NpserverApplication {
 
 
-    static CharacterController characterController = new CharacterController();
+//    static CharacterController characterController = new CharacterController();
 
 
 
     public static void main(String[] args) {
         SpringApplication.run(NpserverApplication.class, args);
 
-        characterController.addCharacter("Homer", "Simpson", Sex.MALE, null, null, Role.ANTAGONIST);
-        characterController.addCharacter("Marge", "Simpson", Sex.FEMALE, null, null, Role.PROTAGONIST);
+       /* characterController.addCharacter("Homer", "Simpson", Sex.MALE, null, null, Role.ANTAGONIST);
+        characterController.addCharacter("Marge", "Simpson", Sex.FEMALE, null, null, Role.PROTAGONIST);*/
       /*  characterController.addCharacter("Lisa", "Simpson", Sex.FEMALE, characterController.findCharacterById(2), characterController.findCharacterById(1), Role.BACKGROUND);
         characterController.addCharacter("Bart", "Simpson", Sex.FEMALE, characterController.findCharacterById(2), characterController.findCharacterById(1), Role.SIDE);
         characterController.addCharacter("Maggie", "Simpson", Sex.FEMALE, characterController.findCharacterById(2), characterController.findCharacterById(1), Role.THROWAWAY);

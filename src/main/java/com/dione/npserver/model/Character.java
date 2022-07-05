@@ -2,7 +2,6 @@ package com.dione.npserver.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
 
 @Entity
 @Table(name = "Character")
@@ -96,6 +95,5 @@ public class Character implements Serializable {
     public Character(Integer id) {
         this.id = id;
     }
-
 
 }
