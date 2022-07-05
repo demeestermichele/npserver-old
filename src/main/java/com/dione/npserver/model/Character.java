@@ -1,9 +1,12 @@
 package com.dione.npserver.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
-public class Character {
+@Table(name = "Character")
+public class Character implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,12 +17,12 @@ public class Character {
     private Role role;
 
     @ManyToOne
-    @JoinColumn(name = "mother")
+    @JoinColumn(name = "mother", nullable = true)
     private Character mother;
 
     @ManyToOne
-    @JoinColumn(name = "father")
-    private  Character father;
+    @JoinColumn(name = "father", nullable = true)
+    private Character father;
 
     public Integer getId() {
         return id;
@@ -76,4 +79,23 @@ public class Character {
     public void setFather(Character father) {
         this.father = father;
     }
+
+    public Character() {
+    }
+
+    public Character(Integer id, String firstName, String lastName, Sex sex, Role role, Character mother, Character father) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sex = sex;
+        this.role = role;
+        this.mother = mother;
+        this.father = father;
+    }
+
+    public Character(Integer id) {
+        this.id = id;
+    }
+
+
 }
