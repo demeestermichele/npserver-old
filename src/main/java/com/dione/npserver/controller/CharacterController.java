@@ -15,14 +15,12 @@ public class CharacterController {
     private CharacterRepository characterRepository;
 
     @PostMapping("/add")
-    public String addCharacter(@RequestParam String first, @RequestParam String last, @RequestParam Sex sex, @RequestParam Character mother, @RequestParam Character father, @RequestParam Role role) {
+    public String addCharacter(@RequestParam String first, @RequestParam String last , @RequestParam Role role, @RequestParam Sex sex) {
         Character character = new Character();
         character.setFirstName(first);
         character.setLastName(last);
         character.setRole(role);
         character.setSex(sex);
-        character.setMother(mother);
-        character.setFather(father);
         characterRepository.save(character);
         return "Added new character to repo!";
     }

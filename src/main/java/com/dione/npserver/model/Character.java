@@ -24,9 +24,6 @@ public class Character implements Serializable {
     @JoinColumn(name = "father", nullable = true)
     private Character father;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private Collection<Character> kids;
-
     public Integer getId() {
         return id;
     }
@@ -83,18 +80,10 @@ public class Character implements Serializable {
         this.father = father;
     }
 
-    public Collection<Character> getKids() {
-        return kids;
-    }
-
-    public void setKids(Collection<Character> children) {
-        this.kids = children;
-    }
-
     public Character() {
     }
 
-    public Character(Integer id, String firstName, String lastName, Sex sex, Role role, Character mother, Character father, Collection<Character> kids) {
+    public Character(Integer id, String firstName, String lastName, Sex sex, Role role, Character mother, Character father) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -102,7 +91,6 @@ public class Character implements Serializable {
         this.role = role;
         this.mother = mother;
         this.father = father;
-        this.kids = kids;
     }
 
     public Character(Integer id) {

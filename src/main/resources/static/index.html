@@ -5,27 +5,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<form action="/add" method="POST">
+<form action="characters/add" method="POST">
     <p>Let's add a character.</p>
 
     <div>
         <label for="firstName">First name:</label>
-        <input name="first" id="firstName" value="Homer">
+        <input name="first" id="firstName" value="">
     </div>
     <div>
         <label for="lastName">Last name:</label>
-        <input name="last" id="lastName" value="Simpson">
+        <input name="last" id="lastName" value="">
     </div>
     <div>
-        <label for="sex">sex:</label>
-        <input name="sex" id="sex" value="MALE">
+        <label for="sex">Sex:</label>
+        <input name="sex" id="sex" value="">
+    </div>
+    <div>
+        <label for="role">Role:</label>
+        <input name="role" id="role" value="">
     </div>
     <div>
         <button>Add character</button>
     </div>
 </form>
 
-<form action="/character-list" method="GET">
+<form action="/characters/list" method="GET">
     <button>List characters</button>
 </form>
 
