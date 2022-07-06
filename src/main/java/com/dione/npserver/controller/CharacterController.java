@@ -1,39 +1,61 @@
 package com.dione.npserver.controller;
+
+import com.dione.npserver.model.Chapter;
 import com.dione.npserver.model.Character;
+import com.dione.npserver.model.Role;
 import com.dione.npserver.model.Sex;
 import com.dione.npserver.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Set;
+
 @RestController
+@RequestMapping("/characters")
+@CrossOrigin(origins = "*")
 public class CharacterController {
 
     @Autowired
     private CharacterRepository characterRepository;
 
     @PostMapping("/add")
-    public String addCharacter(@RequestParam String first, @RequestParam String last, @RequestParam Sex sex) {
+    public String addCharacter(@RequestParam String first, @RequestParam String last, @RequestParam Role role, @RequestParam Sex sex, @RequestParam Set<Chapter> inChapters) {
         Character character = new Character();
         character.setFirstName(first);
         character.setLastName(last);
+        character.setRole(role);
         character.setSex(sex);
+        Set<Chapter> inChapters
         characterRepository.save(character);
         return "Added new character to repo!";
     }
 
-    @GetMapping("/character-list")
+    @GetMapping("/list")
     public Iterable<Character> getCharacter() {
         return characterRepository.findAll();
     }
 
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public Character findCharacterById(@PathVariable Integer id) {
         return characterRepository.findCharacterById(id);
     }
 
-    @GetMapping("/search-firstname/{firstName}")
-    public Character findCharacterByFirstName(@PathVariable String firstName) {
-        return characterRepository.findCharactersByFirstName(firstName);
+    @GetMapping("/{id}/children")
+    public List<Character> getChildren(@PathVariable Integer id) {
+        /***find all characters with the same mother id ***/
+        if (
+                findCharacterById(id).getSex() == Sex.FEMALE
+        ) {
+            return characterRepository.findCharactersByMother(characterRepository.findCharacterById(id));
+        } else if (
+                findCharacterById(id).getSex() == Sex.MALE
+        ) {
+            return characterRepository.findCharactersByFather(characterRepository.findCharacterById(id));
+        }else {
+            return null;
+        }
+
     }
 
 }
