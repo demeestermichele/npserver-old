@@ -2,7 +2,8 @@ package com.dione.npserver.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Character")
@@ -23,6 +24,9 @@ public class Character implements Serializable {
     @ManyToOne
     @JoinColumn(name = "father", nullable = true)
     private Character father;
+
+    @ManyToMany(mappedBy = "charactersList")
+    private Set<Chapter> chaptersList;
 
     public Integer getId() {
         return id;
@@ -96,6 +100,5 @@ public class Character implements Serializable {
     public Character(Integer id) {
         this.id = id;
     }
-
 
 }
