@@ -1,6 +1,10 @@
 package com.dione.npserver.model;
 /**Chapter model by demeestermichele**/
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -15,11 +19,14 @@ public class Chapter implements Serializable {
 
     private String name;
 
-    private float number;
+    private Integer number;
+
+    private float version;
 
     private String description;
 
     @ManyToMany
+    @JsonManagedReference //lets this model take care of the listing
     @JoinTable(
             name = "chapter_characters",
             joinColumns = @JoinColumn(name = "chapter_id"),
@@ -34,10 +41,11 @@ public class Chapter implements Serializable {
         this.id = id;
     }
 
-    public Chapter(Long id, String name, float number, String description, List<Character> charactersList) {
+    public Chapter(Long id, String name, Integer number, float version, String description, List<Character> charactersList) {
         this.id = id;
         this.name = name;
         this.number = number;
+        this.version = version;
         this.description = description;
         this.charactersList = charactersList;
     }
@@ -59,12 +67,20 @@ public class Chapter implements Serializable {
         this.name = name;
     }
 
-    public float getNumber() {
+    public Integer getNumber() {
         return number;
     }
 
-    public void setNumber(float number) {
+    public void setNumber(Integer number) {
         this.number = number;
+    }
+
+    public float getVersion() {
+        return version;
+    }
+
+    public void setVersion(float version) {
+        this.version = version;
     }
 
     public String getDescription() {
@@ -90,6 +106,7 @@ public class Chapter implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", number=" + number +
+                ", version=" + version +
                 ", description='" + description + '\'' +
                 ", charactersList=" + charactersList +
                 '}';

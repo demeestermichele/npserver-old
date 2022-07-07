@@ -21,11 +21,15 @@
         <input name="sex" id="sex" value="MALE">
     </div>
     <div>
+        <label for="role">role:</label>
+        <input name="role" id="role" value="antagonist">
+    </div>
+    <div>
         <button>Add character</button>
     </div>
 </form>
 
-<form action="/character-list" method="GET">
+<form action="/characters/list" method="GET">
     <button>List characters</button>
     <label id="id">ID</label>
     <output name="charID" for="id"></output>

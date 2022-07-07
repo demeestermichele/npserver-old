@@ -38,9 +38,9 @@ public class CharacterController {
         return characterRepository.findCharacterById(id);
     }
 
+    /**find all characters with the same mother id ***/
     @GetMapping("/{id}/children")
     public List<Character> getChildren(@PathVariable Integer id) {
-        /***find all characters with the same mother id ***/
         if (
                 findCharacterById(id).getSex() == Sex.FEMALE
         ) {

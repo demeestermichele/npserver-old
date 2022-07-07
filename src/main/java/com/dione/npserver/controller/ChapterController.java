@@ -17,7 +17,7 @@ public class ChapterController {
     private ChapterRepository chapterRepository;
 
     @PostMapping("/add")
-    public String addChapter(@RequestParam String name, @RequestParam float number, @RequestParam String description) {
+    public String addChapter(@RequestParam String name, @RequestParam Integer number, @RequestParam String description) {
         Chapter chapter = new Chapter();
         chapter.setName(name);
         chapter.setNumber(number);
