@@ -1,6 +1,5 @@
 package com.dione.npserver.controller;
 
-import com.dione.npserver.model.Chapter;
 import com.dione.npserver.model.Character;
 import com.dione.npserver.model.Role;
 import com.dione.npserver.model.Sex;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/characters")
@@ -20,19 +18,18 @@ public class CharacterController {
     private CharacterRepository characterRepository;
 
     @PostMapping("/add")
-    public String addCharacter(@RequestParam String first, @RequestParam String last, @RequestParam Role role, @RequestParam Sex sex, @RequestParam Set<Chapter> inChapters) {
+    public String addCharacter(@RequestParam String first, @RequestParam String last, @RequestParam Role role, @RequestParam Sex sex) {
         Character character = new Character();
         character.setFirstName(first);
         character.setLastName(last);
         character.setRole(role);
         character.setSex(sex);
-        Set<Chapter> inChapters
         characterRepository.save(character);
         return "Added new character to repo!";
     }
 
     @GetMapping("/list")
-    public Iterable<Character> getCharacter() {
+    public Iterable<Character> getCharacters() {
         return characterRepository.findAll();
     }
 
