@@ -104,6 +104,15 @@ public class Character implements Serializable {
     public void setFather(Character father) {
         this.father = father;
     }
+
+    public Set<Chapter> getChaptersList() {
+        return chaptersList;
+    }
+
+    public void setChaptersList(Set<Chapter> chaptersList) {
+        this.chaptersList = chaptersList;
+    }
+
     /**ToString**/
     @Override
     public String toString() {

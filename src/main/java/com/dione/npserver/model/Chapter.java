@@ -22,8 +22,8 @@ public class Chapter implements Serializable {
     @ManyToMany
     @JoinTable(
             name = "chapter_characters",
-            joinColumns = @JoinColumn(name = "character_id"),
-            inverseJoinColumns = @JoinColumn(name = "chapter_id"))
+            joinColumns = @JoinColumn(name = "chapter_id"),
+            inverseJoinColumns = @JoinColumn(name = "character_id"))
     private List<Character> charactersList;
 
     /**Constructors**/

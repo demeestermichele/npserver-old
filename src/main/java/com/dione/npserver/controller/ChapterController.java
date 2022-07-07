@@ -1,6 +1,7 @@
 package com.dione.npserver.controller;
 
 import com.dione.npserver.model.Chapter;
+import com.dione.npserver.model.Character;
 import com.dione.npserver.repository.ChapterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,6 +36,7 @@ public class ChapterController {
         return chapterRepository.findChapterById(id);
     }
 
+/*
     @GetMapping("/{number}")
     public Chapter findChapterByNumber(@PathVariable float number) {
         return chapterRepository.findChaptersByNumber(number);
@@ -44,9 +46,10 @@ public class ChapterController {
     public Iterable<Chapter> findChapterByName(@PathVariable String name){
         return chapterRepository.findChaptersByNameContaining(name);
     }
+*/
 
-    @GetMapping("/{character}")
-    public List<Chapter> findChapterByCharacterListContaining(@PathVariable List<Character> character){
-        return chapterRepository.findChaptersByCharactersListContaining(character);
-    }
+/*    @GetMapping("/{characters}")
+    public List<Chapter> findChapterByCharacterListContaining(@PathVariable List<Character> characters){
+        return chapterRepository.findChaptersByCharactersListContaining(characters);
+    }*/
 }
