@@ -15,7 +15,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="npserver" value="f9c25e63-4561-4fee-ab7a-c7bcb94b3ad2" />
+          <factory-entry name="npserver" value="09517b5d-d52d-4c51-a8e4-f59471e848d6" />
         </datasource-mapping>
         <naming-strategy-map>
           <unit-entry name="npserver" />
