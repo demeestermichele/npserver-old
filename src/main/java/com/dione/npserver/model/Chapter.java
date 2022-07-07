@@ -1,4 +1,5 @@
 package com.dione.npserver.model;
+/**Chapter model by demeestermichele**/
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,6 +22,11 @@ public class Chapter implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "chapter_id"))
     private Set<Character> charactersList;
 
+    /**Constructors**/
+    public Chapter() {
+
+    }
+
     public Chapter(String chapterName) {
         this.chapterName = chapterName;
     }
@@ -30,6 +36,7 @@ public class Chapter implements Serializable {
         this.charactersList = charactersList;
     }
 
+    /**Getters and Setters**/
     public Long getId() {
         return id;
     }
@@ -38,5 +45,28 @@ public class Chapter implements Serializable {
         this.id = id;
     }
 
+    public String getChapterName() {
+        return chapterName;
+    }
 
+    public void setChapterName(String chapterName) {
+        this.chapterName = chapterName;
+    }
+
+    public Set<Character> getCharactersList() {
+        return charactersList;
+    }
+
+    public void setCharactersList(Set<Character> charactersList) {
+        this.charactersList = charactersList;
+    }
+    /**To String**/
+    @Override
+    public String toString() {
+        return "Chapter{" +
+                "id=" + id +
+                ", chapterName='" + chapterName + '\'' +
+                ", charactersList=" + charactersList +
+                '}';
+    }
 }

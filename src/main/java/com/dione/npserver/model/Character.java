@@ -1,5 +1,5 @@
 package com.dione.npserver.model;
-
+/**Character model by demeestermichele**/
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -17,17 +17,38 @@ public class Character implements Serializable {
     private Sex sex;
     private Role role;
 
+    /** One mother (character.Sex == FEMALE) can have multiple children **/
     @ManyToOne
     @JoinColumn(name = "mother", nullable = true)
     private Character mother;
 
+    /** One father (character.Sex == MALE) can have many children **/
     @ManyToOne
     @JoinColumn(name = "father", nullable = true)
     private Character father;
 
+    /** One chapter can have multiple characters and vice versa **/
     @ManyToMany(mappedBy = "charactersList")
     private Set<Chapter> chaptersList;
 
+    /**Constructors**/
+    public Character() {
+    }
+
+    public Character(Integer id, String firstName, String lastName, Sex sex, Role role, Character mother, Character father) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sex = sex;
+        this.role = role;
+        this.mother = mother;
+        this.father = father;
+    }
+
+    /**Getters and setters**/
+    public Character(Integer id) {
+        this.id = id;
+    }
     public Integer getId() {
         return id;
     }
@@ -83,22 +104,17 @@ public class Character implements Serializable {
     public void setFather(Character father) {
         this.father = father;
     }
-
-    public Character() {
+    /**ToString**/
+    @Override
+    public String toString() {
+        return "Character{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", sex=" + sex +
+                ", role=" + role +
+                ", mother=" + mother +
+                ", father=" + father +
+                '}';
     }
-
-    public Character(Integer id, String firstName, String lastName, Sex sex, Role role, Character mother, Character father) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.sex = sex;
-        this.role = role;
-        this.mother = mother;
-        this.father = father;
-    }
-
-    public Character(Integer id) {
-        this.id = id;
-    }
-
 }
