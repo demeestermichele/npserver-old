@@ -12,6 +12,6 @@ public interface ChapterRepository extends CrudRepository<Chapter, Integer> {
     public Chapter findChapterById(Integer id);
     public List<Chapter> findChaptersByNameContaining(String name);
     public Chapter findChaptersByNumber(float number);
-//    public List<Chapter> findChaptersByCharactersListContaining(List<Character> charactersList);
+//    public List<Chapter> findChaptersByCharactersListContaining(List<Character> characterList);
 
 }
