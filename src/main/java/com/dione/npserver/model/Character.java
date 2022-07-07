@@ -1,5 +1,8 @@
 package com.dione.npserver.model;
 /**Character model by demeestermichele**/
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -29,6 +32,7 @@ public class Character implements Serializable {
 
     /** One chapter can have multiple characters and vice versa **/
     @ManyToMany(mappedBy = "charactersList")
+    @JsonBackReference //lets the chapter model show this list (stops recursion)
     private Set<Chapter> chaptersList;
 
     /**Constructors**/
