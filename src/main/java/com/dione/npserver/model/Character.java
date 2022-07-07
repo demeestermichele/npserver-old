@@ -1,11 +1,11 @@
-package com.dione.npserver.model;
 /**Character model by demeestermichele**/
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+package com.dione.npserver.model;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,21 +22,32 @@ public class Character implements Serializable {
 
     /** One mother (character.Sex == FEMALE) can have multiple children **/
     @ManyToOne
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
     @JoinColumn(name = "mother", nullable = true)
     private Character mother;
 
     /** One father (character.Sex == MALE) can have many children **/
     @ManyToOne
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
     @JoinColumn(name = "father", nullable = true)
     private Character father;
 
-    /** One chapter can have multiple characters and vice versa **/
-    @ManyToMany(mappedBy = "charactersList")
-    @JsonBackReference //lets the chapter model show this list (stops recursion)
+    /** A chapter can have multiple characters and vice versa **/
+    @ManyToMany(mappedBy = "charactersList") //this model maps the chapters
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
     private Set<Chapter> chaptersList;
 
     /**Constructors**/
-    public Character() {
+    public Character() { }
+
+    public Character(Integer id) {
+        this.id = id;
     }
 
     public Character(Integer id, String firstName, String lastName, Sex sex, Role role, Character mother, Character father) {
@@ -50,9 +61,6 @@ public class Character implements Serializable {
     }
 
     /**Getters and setters**/
-    public Character(Integer id) {
-        this.id = id;
-    }
     public Integer getId() {
         return id;
     }

@@ -1,9 +1,9 @@
-package com.dione.npserver.model;
 /**Chapter model by demeestermichele**/
+package com.dione.npserver.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,7 +26,9 @@ public class Chapter implements Serializable {
     private String description;
 
     @ManyToMany
-    @JsonManagedReference //lets this model take care of the listing
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
     @JoinTable(
             name = "chapter_characters",
             joinColumns = @JoinColumn(name = "chapter_id"),
