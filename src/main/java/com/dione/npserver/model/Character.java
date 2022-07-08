@@ -36,12 +36,13 @@ public class Character implements Serializable {
     @JoinColumn(name = "father", nullable = true)
     private Character father;
 
+    //TODO relate to character/plot via EntityMapping
     /** A chapter can have multiple characters and vice versa **/
-    @ManyToMany(mappedBy = "charactersList") //this model maps the chapters
+    @OneToMany(mappedBy = "character", cascade = {CascadeType.PERSIST, CascadeType.MERGE}) //this model maps the chapters
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
-    private Set<Chapter> chaptersList;
+    private Set<EntityMapping> entityMapping;
 
     /**Constructors**/
     public Character() { }
@@ -117,12 +118,12 @@ public class Character implements Serializable {
         this.father = father;
     }
 
-    public Set<Chapter> getChaptersList() {
-        return chaptersList;
+    public Set<EntityMapping> getEntityMapping() {
+        return entityMapping;
     }
 
-    public void setChaptersList(Set<Chapter> chaptersList) {
-        this.chaptersList = chaptersList;
+    public void setEntityMapping(Set<EntityMapping> entityMapping) {
+        this.entityMapping = entityMapping;
     }
 
     /**ToString**/
