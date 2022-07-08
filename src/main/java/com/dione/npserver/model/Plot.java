@@ -16,6 +16,4 @@ public class Plot implements Serializable {
     private String description;
     private float revision;
 
-    private List<Character> characterList;
-    private List<Chapter> chapterList;
 }
