@@ -15,8 +15,6 @@ public class CharacterDto implements Serializable {
     private final Sex sex;
     private final Role chartype;
     private final Set<EntityMapping> entityMappingList;
-   /* private final Integer mother;
-    private final Integer father;*/
 
     public CharacterDto(Character character) {
         this.id = character.getId();
@@ -26,10 +24,29 @@ public class CharacterDto implements Serializable {
         this.chartype = getChartype();
         //FIXME this should be dto not entity
         this.entityMappingList = character.getEntityMapping();
-       /* this.mother = character.getMother().getId();
-        this.father = character.getFather().getId();*/
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Sex getSex() {
+        return sex;
+    }
+
+    public Role getChartype() {
+        return chartype;
+    }
+
+    public Set<EntityMapping> getEntityMappingList() {
+        return entityMappingList;
+    }
 }
