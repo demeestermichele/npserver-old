@@ -36,15 +36,24 @@ public class EntityMappingController {
         return new EntityMappingDto(entityMapping);
     }
 
-/*    @GetMapping({"/dtolist"})
-    public List<EntityMappingDto> getAllDto() {
-     EntityMapping entityMapping = new EntityMapping();
+//FIXME this is empty
+    /**
+     * get a list of all Entity Mapping DTOs
+     * @return
+     */
+    @GetMapping({"/dtolist"})
+    public List<EntityMappingDto> getAllMappingDto() {
+     Iterable<EntityMapping> entityMappings = entityMappingRepository.findAll();
+     List<EntityMappingDto> entityMappingDtoList = new ArrayList<>();
      ModelMapper modelMapper = new ModelMapper();
-     EntityMappingDto entityMappingDto = modelMapper.map(entityMapping, EntityMappingDto.class);
-     return entityMapping;
-    }*/
+     modelMapper.map(entityMappings, entityMappingDtoList);
+     return entityMappingDtoList;
+    }
 
-
+    /**
+     * list of all EntityMapping
+     * @return
+     */
     @GetMapping({"/list"})
     public Iterable<EntityMapping> getAll() {
         return this.entityMappingRepository.findAll();

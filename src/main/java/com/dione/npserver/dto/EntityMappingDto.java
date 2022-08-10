@@ -11,7 +11,6 @@ import java.util.List;
 
 public class EntityMappingDto {
 
-//    private EntityMapping entityMapping;
     private Long id;
     private Integer characterId;
     private Long chapterId;

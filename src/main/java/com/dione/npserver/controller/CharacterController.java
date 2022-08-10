@@ -55,6 +55,9 @@ public class CharacterController {
     }
 
 // FIXME list is empty
+    /**
+     * get a list of all Character DTOs
+     */
     @GetMapping("/dto/list")
     public List<CharacterDto> getAllCharacterDtos() {
         Iterable<Character> characterList = characterRepository.findAll();
