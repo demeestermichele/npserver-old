@@ -14,25 +14,16 @@ public class EntityMapping implements Serializable {
 
     /**One character can appear in a chapter/plots and vice versa **/
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    /*@JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id")*/
     @PrimaryKeyJoinColumn(name="character_id", referencedColumnName="id")
     private Character character;
 
     /** A chapter can have multiple characters/plots and vice versa **/
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    /*@JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id")*/
     @PrimaryKeyJoinColumn(name="chapter_id", referencedColumnName="id")
     private Chapter chapter;
 
     /** A plot can have multiple characters/chapters and vice versa **/
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-   /* @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property = "id")*/
     @PrimaryKeyJoinColumn(name="plot_id", referencedColumnName="id")
     private Plot plot;
 

@@ -2,7 +2,7 @@
 package com.dione.npserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -25,13 +25,19 @@ public class Chapter implements Serializable {
 
     private String description;
 
-    //TODO relate to character/plot via EntityMapping
-    /** A chapter can have multiple plots, characters, etc.. **/
+
+    /**
+     * A chapter can have multiple plots, characters, etc..
+     * When in danger of recursion choose to display ID of Mapping
+     * EntityMapping does not need to be shown in field notation
+     **/
     @OneToMany(mappedBy = "chapter")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
+    @JsonIgnore
     private Set<EntityMapping> entityMapping;
+
 
     /**Constructors**/
     public Chapter() {

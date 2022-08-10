@@ -2,10 +2,10 @@ package com.dione.npserver.controller;
 
 import com.dione.npserver.model.Chapter;
 import com.dione.npserver.repository.ChapterRepository;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/chapters")
@@ -26,12 +26,13 @@ public class ChapterController {
     }
 
     @GetMapping("/list")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     public Iterable<Chapter> getChapters() {
         return chapterRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Chapter findChapterById(@PathVariable Integer id) {
+    public Chapter findChapterById(@PathVariable Long id) {
         return chapterRepository.findChapterById(id);
     }
 

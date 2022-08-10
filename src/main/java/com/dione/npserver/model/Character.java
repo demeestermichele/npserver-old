@@ -2,8 +2,8 @@
 package com.dione.npserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import org.springframework.data.domain.Sort;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,12 +37,17 @@ public class Character implements Serializable {
     @JoinColumn(name = "father", nullable = true)
     private Character father;
 
-    //TODO relate to character/plot via EntityMapping
-    /** A character can be in multiple plots, chapters, etc.. **/
+
+    /**
+     * A character can be in multiple plots, chapters, etc..
+     * When in danger of recursion choose to display ID of Mapping
+     * EntityMapping does not need to be shown in field notation
+     **/
     @OneToMany(mappedBy = "character") //this model maps the chapters
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
+    @JsonIgnore
     private Set<EntityMapping> entityMapping;
 
     /**Constructors**/

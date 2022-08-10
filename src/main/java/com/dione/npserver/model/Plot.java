@@ -1,12 +1,11 @@
 package com.dione.npserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,11 +19,17 @@ public class Plot implements Serializable {
     private String description;
     private float revision;
 
-    /** A plot can have multiple characters, chapters, etc.. **/
+
+    /**
+     * A plot can have multiple characters, chapters, etc..
+     * When in danger of recursion choose to display ID of Mapping
+     * EntityMapping does not need to be shown in field notation
+     **/
     @OneToMany(mappedBy = "plot") //this model maps the chapters
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
+    @JsonIgnore
     private Set<EntityMapping> entityMapping;
 
     public Integer getId() {
