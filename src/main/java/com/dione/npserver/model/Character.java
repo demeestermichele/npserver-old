@@ -20,6 +20,15 @@ public class Character implements Serializable {
     private Sex sex;
     private Role role;
 
+/*
+    */
+/** A character belongs to one or more ethnicities **//*
+
+    @ManyToMany
+    @JoinColumn(name = "ethnicity_id")
+    private Ethnicity ethnicity;
+*/
+
     /** One mother (character.Sex == FEMALE) can have multiple children **/
     @ManyToOne
     @JsonIdentityInfo(
@@ -43,6 +52,16 @@ public class Character implements Serializable {
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
     private Set<EntityMapping> entityMapping;
+
+/*
+    public Ethnicity getEthnicity() {
+        return ethnicity;
+    }
+
+    public void setEthnicity(Ethnicity ethnicity) {
+        this.ethnicity = ethnicity;
+    }
+*/
 
     /**Constructors**/
     public Character() { }
