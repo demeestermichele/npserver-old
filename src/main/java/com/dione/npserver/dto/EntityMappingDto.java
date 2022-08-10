@@ -1,13 +1,6 @@
 package com.dione.npserver.dto;
 
-import com.dione.npserver.model.Chapter;
-import com.dione.npserver.model.Character;
 import com.dione.npserver.model.EntityMapping;
-import com.dione.npserver.model.Plot;
-import lombok.Data;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class EntityMappingDto {
 
@@ -21,6 +14,9 @@ public class EntityMappingDto {
         this.characterId = entityMapping.getCharacter().getId();
         this.chapterId = entityMapping.getChapter().getId();
         this.plotId = entityMapping.getPlot().getId();
+    }
+
+    public EntityMappingDto() {
     }
 
     public Long getId() {
