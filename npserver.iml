@@ -15,6 +15,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
+          <factory-entry name="noname-a.xml@0" value="09517b5d-d52d-4c51-a8e4-f59471e848d6" />
           <factory-entry name="npserver" value="09517b5d-d52d-4c51-a8e4-f59471e848d6" />
         </datasource-mapping>
         <naming-strategy-map>
