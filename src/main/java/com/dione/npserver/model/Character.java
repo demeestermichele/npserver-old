@@ -3,6 +3,7 @@ package com.dione.npserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.data.domain.Sort;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -37,8 +38,8 @@ public class Character implements Serializable {
     private Character father;
 
     //TODO relate to character/plot via EntityMapping
-    /** A chapter can have multiple characters and vice versa **/
-    @OneToMany(mappedBy = "character", cascade = {CascadeType.PERSIST, CascadeType.MERGE}) //this model maps the chapters
+    /** A character can be in multiple plots, chapters, etc.. **/
+    @OneToMany(mappedBy = "character") //this model maps the chapters
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
@@ -51,6 +52,13 @@ public class Character implements Serializable {
         this.id = id;
     }
 
+    public Character(String firstName, String lastName, Sex sex, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sex = sex;
+        this.role = role;
+    }
+
     public Character(Integer id, String firstName, String lastName, Sex sex, Role role, Character mother, Character father) {
         this.id = id;
         this.firstName = firstName;
@@ -61,7 +69,9 @@ public class Character implements Serializable {
         this.father = father;
     }
 
-    /**Getters and setters**/
+    /**
+     * Getters and setters
+     **/
     public Integer getId() {
         return id;
     }

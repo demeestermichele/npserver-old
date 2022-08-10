@@ -26,8 +26,8 @@ public class Chapter implements Serializable {
     private String description;
 
     //TODO relate to character/plot via EntityMapping
-    /** A character can be in multiple chapters and vice versa **/
-    @OneToMany(mappedBy = "chapter", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    /** A chapter can have multiple plots, characters, etc.. **/
+    @OneToMany(mappedBy = "chapter")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
