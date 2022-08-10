@@ -20,7 +20,7 @@ public class Plot implements Serializable {
     private String description;
     private float revision;
 
-    /** A chapter can have multiple characters and vice versa **/
+    /** A plot can have multiple characters, chapters, etc.. **/
     @OneToMany(mappedBy = "plot") //this model maps the chapters
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,

@@ -38,7 +38,7 @@ public class Character implements Serializable {
     private Character father;
 
     //TODO relate to character/plot via EntityMapping
-    /** A chapter can have multiple characters and vice versa **/
+    /** A character can be in multiple plots, chapters, etc.. **/
     @OneToMany(mappedBy = "character") //this model maps the chapters
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
