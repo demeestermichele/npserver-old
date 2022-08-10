@@ -1,6 +1,9 @@
 package com.dione.npserver.controller;
 
+import com.dione.npserver.dto.CharacterDto;
+import com.dione.npserver.dto.EntityMappingDto;
 import com.dione.npserver.model.Character;
+import com.dione.npserver.model.EntityMapping;
 import com.dione.npserver.model.Role;
 import com.dione.npserver.model.Sex;
 import com.dione.npserver.repository.CharacterRepository;
@@ -33,10 +36,24 @@ public class CharacterController {
         return characterRepository.findAll();
     }
 
+
     @GetMapping("/{id}")
     public Character findCharacterById(@PathVariable Integer id) {
         return characterRepository.findCharacterById(id);
     }
+
+    @GetMapping("/dto/{id}")
+    public CharacterDto characterDTO(@PathVariable Integer id) {
+        Character character = characterRepository.findCharacterById(id);
+        return new CharacterDto(character);
+
+    }
+
+/*    @GetMapping("/dto/{id}")
+    public EntityMappingDto EntityDTO(@PathVariable Long id) {
+        EntityMapping entityMapping = entityMappingRepository.findEntityMappingById(id);
+        return new EntityMappingDto(entityMapping);
+    }*/
 
     /**find all characters with the same mother id ***/
     @GetMapping("/{id}/children")

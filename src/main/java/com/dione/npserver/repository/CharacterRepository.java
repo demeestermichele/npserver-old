@@ -11,5 +11,7 @@ public interface CharacterRepository extends CrudRepository<Character, Integer> 
     public Character findCharactersByLastName(String lastName);
     public List<Character> findCharactersByMother(Character mother);
     public List<Character> findCharactersByFather(Character father);
+    List<Character> findCharacterByEntityMapping(Integer id);
 //    public List<Character> findCharactersByMotherOrFather(Character mother, Character father);
+
 }
