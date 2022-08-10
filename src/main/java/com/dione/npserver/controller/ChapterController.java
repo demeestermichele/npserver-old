@@ -1,7 +1,6 @@
 package com.dione.npserver.controller;
 
 import com.dione.npserver.model.Chapter;
-import com.dione.npserver.model.Character;
 import com.dione.npserver.repository.ChapterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -3,6 +3,7 @@ package com.dione.npserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import org.springframework.data.domain.Sort;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -36,18 +37,26 @@ public class Character implements Serializable {
     @JoinColumn(name = "father", nullable = true)
     private Character father;
 
+    //TODO relate to character/plot via EntityMapping
     /** A chapter can have multiple characters and vice versa **/
-    @ManyToMany(mappedBy = "charactersList") //this model maps the chapters
+    @OneToMany(mappedBy = "character") //this model maps the chapters
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
-    private Set<Chapter> chaptersList;
+    private Set<EntityMapping> entityMapping;
 
     /**Constructors**/
     public Character() { }
 
     public Character(Integer id) {
         this.id = id;
+    }
+
+    public Character(String firstName, String lastName, Sex sex, Role role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.sex = sex;
+        this.role = role;
     }
 
     public Character(Integer id, String firstName, String lastName, Sex sex, Role role, Character mother, Character father) {
@@ -60,7 +69,9 @@ public class Character implements Serializable {
         this.father = father;
     }
 
-    /**Getters and setters**/
+    /**
+     * Getters and setters
+     **/
     public Integer getId() {
         return id;
     }
@@ -117,12 +128,12 @@ public class Character implements Serializable {
         this.father = father;
     }
 
-    public Set<Chapter> getChaptersList() {
-        return chaptersList;
+    public Set<EntityMapping> getEntityMapping() {
+        return entityMapping;
     }
 
-    public void setChaptersList(Set<Chapter> chaptersList) {
-        this.chaptersList = chaptersList;
+    public void setEntityMapping(Set<EntityMapping> entityMapping) {
+        this.entityMapping = entityMapping;
     }
 
     /**ToString**/

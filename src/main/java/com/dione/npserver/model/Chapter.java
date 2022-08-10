@@ -25,15 +25,13 @@ public class Chapter implements Serializable {
 
     private String description;
 
-    @ManyToMany
+    //TODO relate to character/plot via EntityMapping
+    /** A character can be in multiple chapters and vice versa **/
+    @OneToMany(mappedBy = "chapter")
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
             property = "id")
-    @JoinTable(
-            name = "chapter_characters",
-            joinColumns = @JoinColumn(name = "chapter_id"),
-            inverseJoinColumns = @JoinColumn(name = "character_id"))
-    private List<Character> charactersList;
+    private Set<EntityMapping> entityMapping;
 
     /**Constructors**/
     public Chapter() {
@@ -49,7 +47,6 @@ public class Chapter implements Serializable {
         this.number = number;
         this.version = version;
         this.description = description;
-        this.charactersList = charactersList;
     }
 
     /**Getters and Setters**/
@@ -93,12 +90,13 @@ public class Chapter implements Serializable {
         this.description = description;
     }
 
-    public List<Character> getCharactersList() {
-        return charactersList;
+
+    public Set<EntityMapping> getEntityMapping() {
+        return entityMapping;
     }
 
-    public void setCharactersList(List<Character> charactersList) {
-        this.charactersList = charactersList;
+    public void setEntityMapping(Set<EntityMapping> entityMapping) {
+        this.entityMapping = entityMapping;
     }
 
     /**To String**/
@@ -110,7 +108,6 @@ public class Chapter implements Serializable {
                 ", number=" + number +
                 ", version=" + version +
                 ", description='" + description + '\'' +
-                ", charactersList=" + charactersList +
                 '}';
     }
 }
