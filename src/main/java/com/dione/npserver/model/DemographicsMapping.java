@@ -12,11 +12,23 @@ public class DemographicsMapping implements Serializable {
     private Integer id;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @PrimaryKeyJoinColumn(name="character_id", referencedColumnName="id")
+    @PrimaryKeyJoinColumn(name = "character_id", referencedColumnName = "id")
     private Character character;
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @PrimaryKeyJoinColumn(name = "Ethnicity", referencedColumnName = "id")
+    @PrimaryKeyJoinColumn(name = "ethnicity_id", referencedColumnName = "id")
     private Ethnicity ethnicity;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @PrimaryKeyJoinColumn(name = "world_id", referencedColumnName = "id")
+    private World world;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @PrimaryKeyJoinColumn(name = "culture_id", referencedColumnName = "id")
+    private Culture culture;
+
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @PrimaryKeyJoinColumn(name = "planet_id", referencedColumnName = "id")
+    private Planet planet;
 
 }

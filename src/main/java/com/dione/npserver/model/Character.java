@@ -1,4 +1,3 @@
-/** Character model by demeestermichele **/
 package com.dione.npserver.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -7,6 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,16 +21,20 @@ public class Character implements Serializable {
     private Sex sex;
     private Role role;
 
-/*
-    */
-/** A character belongs to one or more ethnicities **//*
 
+    /**
+     * Characters can have/belong to one or more ethnicities
+     **/
     @ManyToMany
-    @JoinColumn(name = "ethnicity_id")
-    private Ethnicity ethnicity;
-*/
+    @JoinTable(
+            name = "ethnicity_characters",
+            joinColumns = @JoinColumn(name = "character_id"),
+            inverseJoinColumns = @JoinColumn(name = "ethnicity_id"))
+    private List<Ethnicity> ethnicity;
 
-    /** One mother (character.Sex == FEMALE) can have multiple children **/
+    /**
+     * One mother (character.Sex == FEMALE) can have multiple children
+     **/
     @ManyToOne
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -38,7 +42,9 @@ public class Character implements Serializable {
     @JoinColumn(name = "mother", nullable = true)
     private Character mother;
 
-    /** One father (character.Sex == MALE) can have many children **/
+    /**
+     * One father (character.Sex == MALE) can have many children
+     **/
     @ManyToOne
     @JsonIdentityInfo(
             generator = ObjectIdGenerators.PropertyGenerator.class,
@@ -69,8 +75,11 @@ public class Character implements Serializable {
     }
 */
 
-    /**Constructors**/
-    public Character() { }
+    /**
+     * Constructors
+     **/
+    public Character() {
+    }
 
     public Character(Integer id) {
         this.id = id;
@@ -160,7 +169,9 @@ public class Character implements Serializable {
         this.entityMapping = entityMapping;
     }
 
-    /**ToString**/
+    /**
+     * ToString
+     **/
     @Override
     public String toString() {
         return "Character{" +

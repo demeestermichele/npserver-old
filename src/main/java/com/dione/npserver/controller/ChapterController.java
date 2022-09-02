@@ -36,7 +36,6 @@ public class ChapterController {
         return chapterRepository.findChapterById(id);
     }
 
-/*
     @GetMapping("/{number}")
     public Chapter findChapterByNumber(@PathVariable float number) {
         return chapterRepository.findChaptersByNumber(number);
@@ -46,9 +45,8 @@ public class ChapterController {
     public Iterable<Chapter> findChapterByName(@PathVariable String name){
         return chapterRepository.findChaptersByNameContaining(name);
     }
-*/
 
-/*    @GetMapping("/{characters}")
+   /* @GetMapping("/{characters}")
     public List<Chapter> findChapterByCharacterListContaining(@PathVariable List<Character> characters){
         return chapterRepository.findChaptersByCharactersListContaining(characters);
     }*/

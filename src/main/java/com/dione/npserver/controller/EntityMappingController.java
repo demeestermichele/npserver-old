@@ -51,23 +51,7 @@ public class EntityMappingController {
                 .map(entityMapping -> modelMapper.map(entityMappings, EntityMappingDto.class))
                 .collect(Collectors.toList());
     }
-/*    @GetMapping({"/dtolist"})
-    public List<EntityMappingDto> getAllMappingDto() {
-        ModelMapper modelMapper = new ModelMapper();
 
-        TypeMap<EntityMapping, EntityMappingDto> typeMap =
-                modelMapper.createTypeMap(EntityMapping.class, EntityMappingDto.class);
-
-        System.out.println("getalldto");
-        typeMap.addMappings(mapper-> {
-            mapper.map(EntityMapping::getId, EntityMappingDto::setId);
-            mapper.map(EntityMapping::getChapter, EntityMappingDto::setChapterId);
-            mapper.map(EntityMapping::getCharacter, EntityMappingDto::setCharacterId);
-            mapper.map(EntityMapping::getPlot, EntityMappingDto::setPlotId);
-        });
-        return typeMap.getMappings().stream().map(entityMapping -> modelMapper.map(entityMappingRepository.findAll(), EntityMappingDto.class))
-                .collect(Collectors.toList());
-    }*/
     /**
      * list of all EntityMapping
      *
